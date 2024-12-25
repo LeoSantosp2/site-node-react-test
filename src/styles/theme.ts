@@ -1,16 +1,15 @@
 export const theme = {
   colors: {
     white: '#F2F2F2',
-    black: '#000000',
+    black: '#121212',
   },
 
   font: {
     sizes: {
-      superSmall: '1.5rem',
-      small: '1.7rem',
-      medium: '2rem',
-      large: '2.7rem',
-      superLarge: '5rem',
+      title: '2.7rem',
+      subTitle: '2.3rem',
+      text: '1.6rem',
+      subText: '1rem',
     },
   },
 };
