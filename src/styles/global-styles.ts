@@ -2,17 +2,17 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   *{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-  }
-
-  html{
-    font-size: 62.5%;
   }
 
   html, body{
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+  }
+
+  html{
+    font-size: 62.5%;
   }
 `;

@@ -1,9 +1,11 @@
-'use client';
+import { Roboto } from 'next/font/google';
 
-import { ThemeProvider } from 'styled-components';
+import Providers from '../providers';
 
-import { GlobalStyles } from '../styles/global-styles';
-import { theme } from '../styles/theme';
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700', '900'],
+});
 
 export default function RootLayout({
   children,
@@ -11,12 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <html lang="pt-BR">
-        <title>Model Project NextJs</title>
-        <body>{children}</body>
-      </html>
-    </ThemeProvider>
+    <html lang="pt-BR">
+      <title>Node React Test</title>
+      <body className={roboto.className}>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
   );
 }
