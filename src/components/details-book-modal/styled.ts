@@ -56,13 +56,17 @@ export const Container = styled.div`
     align-items: center;
   }
 
-  footer button {
+  footer a {
     width: 8rem;
     height: 2.7rem;
     border-radius: 0.5rem;
     border: 0;
     transition: all 0.3s ease;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     font-size: ${({ theme }) => theme.font.sizes.text};
     background-color: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.white};

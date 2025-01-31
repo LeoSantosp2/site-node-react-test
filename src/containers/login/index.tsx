@@ -1,6 +1,23 @@
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
 import { Page, Modal, Container } from './styled';
+import { loginEmployeer } from '../../utils/login-employeer';
 
 export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { push } = useRouter();
+
+  const handleLoginEmployeer = async () => {
+    const loginSuccess = await loginEmployeer({ email, password });
+
+    if (loginSuccess) {
+      push('/inicial');
+    }
+  };
+
   return (
     <Page>
       <Modal>
@@ -13,7 +30,13 @@ export default function LoginPage() {
             <form action="">
               <label htmlFor="">
                 E-mail
-                <input type="email" name="email" className="input-email" />
+                <input
+                  type="email"
+                  name="email"
+                  className="input-email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </label>
 
               <label htmlFor="">
@@ -22,13 +45,15 @@ export default function LoginPage() {
                   type="password"
                   name="password"
                   className="input-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
             </form>
           </main>
 
           <footer>
-            <button>Login</button>
+            <button onClick={handleLoginEmployeer}>Login</button>
           </footer>
         </Container>
       </Modal>

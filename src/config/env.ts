@@ -13,4 +13,12 @@ export default {
       isbn: '',
     },
   },
+  DEFAULT_CLIENT_VALUE: {
+    cpf: '',
+    name: '',
+  },
+  DEFAULT_EMPLOYEER_NAME: {
+    firstName: '',
+    lastName: '',
+  },
 };

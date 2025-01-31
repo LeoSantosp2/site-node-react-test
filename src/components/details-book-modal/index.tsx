@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { IoCloseOutline } from 'react-icons/io5';
 
 import { DetailsBooksModalProps } from '../../types/details-books-modal-props';
@@ -24,7 +25,7 @@ export default function DetailsBookModal(props: DetailsBooksModalProps) {
         </main>
 
         <footer>
-          <button>Alugar</button>
+          <Link href="/alugar-livro">Alugar</Link>
         </footer>
       </Container>
     </Modal>

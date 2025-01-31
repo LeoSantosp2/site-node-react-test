@@ -1,37 +1,38 @@
-import { IoPersonSharp } from 'react-icons/io5';
-import { IoIosArrowDown, IoIosSearch } from 'react-icons/io';
+import { IoIosSearch } from 'react-icons/io';
 import { useState, useEffect } from 'react';
-
-import axios from '../../services/axios';
 
 import DetailsBookModal from '../../components/details-book-modal';
 import PaginationComponent from '../../components/pagination';
+import HeaderComponent from '../../components/header';
+
+import axios from '../../services/axios';
 
 import env from '../../config/env';
 
 import { Books, Book } from '../../types/books-props';
 
-import { Page, Header, Main } from './styled';
+import { Page, Main } from './styled';
 
 export default function HomePage() {
-  const [optionsEnabled, setOptionsEnabled] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [books, setBooks] = useState<Books[]>([]);
   const [book, setBook] = useState<Book>(env.DEFAULT_BOOK_VALUE.book);
   const [page, setPage] = useState(0);
   const [totalBooks, setTotalBooks] = useState(0);
+  const [q, setQ] = useState('');
+  const [status, setStatus] = useState('');
 
   const fetchBooks = async () => {
     try {
       const response = await axios.get(
-        `/books?page=${page}&limit=${env.LIMIT}`,
+        `/books?page=${page}&limit=${env.LIMIT}&q=${q}&status=${status}`,
       );
 
       setBooks(response.data.data);
       setTotalBooks(response.data.total);
     } catch (err) {
       if (err instanceof Error) {
-        console.log('Erro ao buscar os livros: ', err.message);
+        console.log('Erro ao buscar os livros:', err.message);
       }
     }
   };
@@ -49,8 +50,9 @@ export default function HomePage() {
       isbn: findBook.book.isbn,
     };
 
-    setBook(newBook);
+    localStorage.setItem('book', JSON.stringify(newBook));
 
+    setBook(newBook);
     setModalIsOpen(true);
   };
 
@@ -60,29 +62,7 @@ export default function HomePage() {
 
   return (
     <Page>
-      <Header>
-        <div className="header-container">
-          <h1 className="logo">Livraria</h1>
-
-          <h1>Node React Test</h1>
-
-          <div className="menu">
-            <button onClick={() => setOptionsEnabled(!optionsEnabled)}>
-              <IoPersonSharp className="perfil" /> Leonardo Santos{' '}
-              <IoIosArrowDown className="arrow-down" />
-            </button>
-
-            <div
-              className="options"
-              style={{ display: optionsEnabled ? 'flex' : 'none' }}
-            >
-              <a href="/clientes">Clientes</a>
-              <a href="/lovros-alugados">Livros Alugados</a>
-              <a href="/sair">Sair</a>
-            </div>
-          </div>
-        </div>
-      </Header>
+      <HeaderComponent />
 
       <Main>
         <div className="search-area">
@@ -90,9 +70,10 @@ export default function HomePage() {
             <input
               type="text"
               placeholder="Digite o título, autor um ISBN do livro"
+              onChange={(e) => setQ(e.target.value)}
             />
 
-            <button>
+            <button onClick={fetchBooks}>
               <IoIosSearch />
             </button>
           </div>
@@ -104,10 +85,14 @@ export default function HomePage() {
             </select>
 
             <label htmlFor="availability">Disponibilidade:</label>
-            <select name="" id="availability">
+            <select
+              name=""
+              id="availability"
+              onChange={(e) => setStatus(e.target.value)}
+            >
               <option value=""></option>
-              <option value="available">Disponível</option>
-              <option value="rented">Alugado</option>
+              <option value="Disponível">Disponível</option>
+              <option value="Alugado">Alugado</option>
             </select>
           </div>
         </div>
