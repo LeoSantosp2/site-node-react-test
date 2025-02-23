@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 import { IoPersonSharp } from 'react-icons/io5';
 import { IoIosArrowDown } from 'react-icons/io';
+import Link from 'next/link';
 
 import env from '../../config/env';
 
@@ -31,7 +32,9 @@ export default function HeaderComponent() {
   return (
     <Header>
       <div className="header-container">
-        <h1 className="logo">Livraria</h1>
+        <Link href="/inicial" className="logo">
+          Livraria
+        </Link>
 
         <h1>Node React Test</h1>
 
@@ -46,7 +49,7 @@ export default function HeaderComponent() {
             style={{ display: optionsEnabled ? 'flex' : 'none' }}
           >
             <a href="/clientes">Clientes</a>
-            <a href="/lovros-alugados">Livros Alugados</a>
+            <a href="/livros-alugados">Livros Alugados</a>
             <a href="/" onClick={() => Cookies.remove('tokenAuth')}>
               Sair
             </a>

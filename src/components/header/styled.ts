@@ -15,14 +15,17 @@ export const Header = styled.header`
     align-items: center;
   }
 
-  .header-container h1 {
-    font-weight: 400;
+  .header-container .logo {
+    font-weight: 800;
+    text-decoration: none;
     font-size: ${({ theme }) => theme.font.sizes.title};
     color: ${({ theme }) => theme.colors.white};
   }
 
-  .header-container .logo {
-    font-weight: 800;
+  .header-container h1 {
+    font-weight: 400;
+    font-size: ${({ theme }) => theme.font.sizes.title};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .header-container .menu {
