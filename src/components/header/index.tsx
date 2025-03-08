@@ -50,6 +50,7 @@ export default function HeaderComponent() {
           >
             <a href="/clientes">Clientes</a>
             <a href="/livros-alugados">Livros Alugados</a>
+            <a href="/relatorios">Relatórios</a>
             <a href="/" onClick={() => Cookies.remove('tokenAuth')}>
               Sair
             </a>
