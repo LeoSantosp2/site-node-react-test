@@ -79,11 +79,6 @@ export default function HomePage() {
           </div>
 
           <div className="filters-area">
-            <label htmlFor="category">Categoria:</label>
-            <select name="" id="category">
-              <option value=""></option>
-            </select>
-
             <label htmlFor="availability">Disponibilidade:</label>
             <select
               name=""
