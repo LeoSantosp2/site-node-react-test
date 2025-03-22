@@ -71,6 +71,7 @@ export const Main = styled.main`
     width: 80rem;
     height: 10rem;
     margin: 0 auto;
+    margin-bottom: 5rem;
     text-align: center;
     font-size: ${({ theme }) => theme.font.sizes.text};
   }
